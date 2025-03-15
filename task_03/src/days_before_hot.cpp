@@ -1,6 +1,6 @@
 #include "days_before_hot.h"
 
-std::vector<int> days_before_hot(std::vector<double> temperatures) {
+std::vector<int> DaysBeforeHot(std::vector<double> temperatures) {
   std::vector<int> days_before_h(temperatures.size());
   std::stack<std::vector<double>> memory{};
   int size = temperatures.size() - 1;
