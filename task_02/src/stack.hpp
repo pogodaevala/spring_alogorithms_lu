@@ -3,6 +3,10 @@
 #include <algorithm>
 #include <concepts>
 
+struct PopError {
+  const char* str;
+};
+
 template <typename T>
 struct Node {
   T value;
@@ -24,6 +28,7 @@ template <typename T>
   requires(std::totally_ordered<T>)
 class MinStack {
  public:
+  MinStack(){};
   void Push(T value);
   T Pop();
   T GetMin();
@@ -48,6 +53,9 @@ void Stack<T>::Push(T value) {
 
 template <typename T>
 T Stack<T>::Pop() {
+  if (head == nullptr) {
+    throw PopError("Empty stack");
+  }
   T val = head->value;
   head = head->prev;
   return val;
@@ -67,7 +75,7 @@ void MinStack<T>::Push(T value) {
     new_head->prev = head;
     new_head->value = value;
     new_head_min->prev = head_min;
-    new_head_min->value = std::min(head->value, value);
+    new_head_min->value = std::min(head_min->value, value);
     head = new_head;
     head_min = new_head_min;
   }
@@ -76,6 +84,9 @@ void MinStack<T>::Push(T value) {
 template <typename T>
   requires(std::totally_ordered<T>)
 T MinStack<T>::Pop() {
+  if (head == nullptr) {
+    throw PopError("Empty stack");
+  }
   T val = head->value;
   head = head->prev;
   head_min = head_min->prev;

@@ -1,3 +1,17 @@
 #include <iostream>
+#include <vector>
 
-int main() { return 0; }
+#include "stack.hpp"
+
+class NotTotallyOrdered {
+  int data;
+};
+
+int main() {
+  try {
+    MinStack<int> stack{};
+    stack.Pop();
+  } catch (PopError s) {
+    std::cout << s.str << "\n";
+  }
+}
