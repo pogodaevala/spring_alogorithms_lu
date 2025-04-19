@@ -7,38 +7,38 @@
 
 TEST(StackTest, Simple) {
   Stack<int> stack{};
-  stack.Push(1);              // Stack [1]
-  ASSERT_EQ(stack.Pop(), 1);  // Stack []
-  stack.Push(1);              // Stack [1]
-  stack.Push(2);              // Stack [1, 2]
-  ASSERT_EQ(stack.Pop(), 2);  // Stack [1]
-  ASSERT_EQ(stack.Pop(), 1);  // Stack []
-  stack.Push(1);              // Stack [1]
-  stack.Push(2);              // Stack [1, 2]
-  ASSERT_EQ(stack.Pop(), 2);  // Stack [1]
-  stack.Push(3);              // Stack [1, 3]
-  ASSERT_EQ(stack.Pop(), 3);  // Stack [1]
-  ASSERT_EQ(stack.Pop(), 1);  // Stack []
+  stack.Push(1);              // [1]
+  ASSERT_EQ(stack.Pop(), 1);  // []
+  stack.Push(1);              // [1]
+  stack.Push(2);              // [1, 2]
+  ASSERT_EQ(stack.Pop(), 2);  // [1]
+  ASSERT_EQ(stack.Pop(), 1);  // []
+  stack.Push(1);              // [1]
+  stack.Push(2);              // [1, 2]
+  ASSERT_EQ(stack.Pop(), 2);  // [1]
+  stack.Push(3);              // [1, 3]
+  ASSERT_EQ(stack.Pop(), 3);  // [1]
+  ASSERT_EQ(stack.Pop(), 1);  // []
 }
 
 TEST(MinStackTest, Simple) {
   MinStack<int> stack{};
-  stack.Push(1);  // Stack [1]
+  stack.Push(1);  // [1]
   ASSERT_EQ(stack.GetMin(), 1);
-  ASSERT_EQ(stack.Pop(), 1);  // Stack []
-  stack.Push(1);              // Stack [1]
-  stack.Push(2);              // Stack [1, 2]
+  ASSERT_EQ(stack.Pop(), 1);  // []
+  stack.Push(1);              // [1]
+  stack.Push(2);              // [1, 2]
   ASSERT_EQ(stack.GetMin(), 1);
-  ASSERT_EQ(stack.Pop(), 2);  // Stack [1]
-  ASSERT_EQ(stack.Pop(), 1);  // Stack []
-  stack.Push(1);              // Stack [1]
-  stack.Push(2);              // Stack [1, 2]
+  ASSERT_EQ(stack.Pop(), 2);  // [1]
+  ASSERT_EQ(stack.Pop(), 1);  // []
+  stack.Push(1);              // [1]
+  stack.Push(2);              // [1, 2]
   ASSERT_EQ(stack.GetMin(), 1);
-  ASSERT_EQ(stack.Pop(), 2);  // Stack [1]
-  stack.Push(3);              // Stack [1, 3]
+  ASSERT_EQ(stack.Pop(), 2);  // [1]
+  stack.Push(3);              // [1, 3]
   ASSERT_EQ(stack.GetMin(), 1);
-  ASSERT_EQ(stack.Pop(), 3);  // Stack [1]
-  ASSERT_EQ(stack.Pop(), 1);  // Stack []
+  ASSERT_EQ(stack.Pop(), 3);  // [1]
+  ASSERT_EQ(stack.Pop(), 1);  // []
 }
 
 TEST(PopErrorTest, PopErrorTest) {

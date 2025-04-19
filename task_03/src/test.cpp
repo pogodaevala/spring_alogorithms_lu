@@ -1,7 +1,7 @@
 
 #include <gtest/gtest.h>
 
-#include "days_before_hot.h"
+#include "days_before_hot.hpp"
 
 TEST(first_test, ints) {
   std::vector<double> temp{5, 7, 5, 3, 10, 0, 2, -1, 3};

@@ -1,4 +1,4 @@
-#include "days_before_hot.h"
+#include "days_before_hot.hpp"
 
 std::vector<int> DaysBeforeHot(std::vector<double> temperatures) {
   std::vector<int> days_before_h(temperatures.size());

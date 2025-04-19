@@ -2,7 +2,6 @@
 // #include <stack>
 // #include <vector>
 
-#include "days_before_hot.h"
+#include "days_before_hot.hpp"
 
-int main() {
-}
+int main() {}
