@@ -16,7 +16,7 @@ AvlTree::Node* AvlTree::Search(int search_key) const {
   return nullptr;
 }
 
-void AvlTree::add(int new_key, int data) {
+void AvlTree::Add(int new_key, int data) {
   Node* new_node = new Node(new_key, data);
   if (head == nullptr) {
     head = new_node;
@@ -58,7 +58,7 @@ AvlTree::Node* AvlTree::SearchMin(Node* cur) const {
   return cur;
 }
 
-void AvlTree::del(int del_key) {
+void AvlTree::Del(int del_key) {
   Node* del_par = nullptr;
   Node* del_node = head;
 
@@ -128,7 +128,7 @@ void AvlTree::del(int del_key) {
 
 AvlTree::AvlTree(std::vector<std::pair<int, int>> key_values) {
   for (int i = 0; i < key_values.size(); ++i) {
-    add(key_values[i].first, key_values[i].second);
+    Add(key_values[i].first, key_values[i].second);
   }
 }
 

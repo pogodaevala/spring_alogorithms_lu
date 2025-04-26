@@ -14,8 +14,8 @@ class AvlTree {
     }
   }
 
-  void del(int del_key);
-  void add(int new_key, int data);
+  void Del(int del_key);
+  void Add(int new_key, int data);
 
  private:
   struct Node {

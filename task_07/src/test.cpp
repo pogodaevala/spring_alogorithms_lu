@@ -19,11 +19,11 @@ TEST(AvlTest, AddDel) {
                                          std::pair<int, int>{3, 4},
                                          std::pair<int, int>{9, 9}};
   AvlTree tree{pairs};
-  tree.add(7, 1);
+  tree.Add(7, 1);
   ASSERT_EQ(tree[7], 1);
-  tree.del(5);
-  tree.del(3);
-  tree.add(3, 0);
+  tree.Del(5);
+  tree.Del(3);
+  tree.Add(3, 0);
   ASSERT_EQ(tree[3], 0);
   EXPECT_THROW({ int a{tree[5]}; }, std::out_of_range);
 }
@@ -33,7 +33,7 @@ TEST(AvlCoutTest, Simple) {
                                          std::pair<int, int>{3, 4},
                                          std::pair<int, int>{9, 9}};
   AvlTree tree{pairs};
-  tree.add(7, 1);
+  tree.Add(7, 1);
 
   std::ostringstream oss;
   oss << tree;
@@ -43,10 +43,10 @@ TEST(AvlCoutTest, Simple) {
 
 TEST(AvlCoutTest, Simple2) {
   AvlTree tree;
-  tree.add(3, 30);
-  tree.add(1, 10);
-  tree.add(4, 40);
-  tree.add(2, 20);
+  tree.Add(3, 30);
+  tree.Add(1, 10);
+  tree.Add(4, 40);
+  tree.Add(2, 20);
 
   std::ostringstream oss;
   oss << tree;
@@ -63,7 +63,7 @@ TEST(AvlCoutTest, EmptyTreeOutput) {
 
 TEST(AvlCoutTest, SingleElement) {
   AvlTree tree;
-  tree.add(5, 6);
+  tree.Add(5, 6);
   std::ostringstream oss;
   oss << tree;
   EXPECT_EQ(oss.str(), "{(5, 6)}");
