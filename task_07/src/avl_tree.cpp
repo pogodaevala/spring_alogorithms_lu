@@ -28,7 +28,7 @@ void AvlTree::add(int new_key, int data) {
   while (cur != nullptr) {
     par = cur;
     if (cur->key == new_key) {
-      std::cout << "the key is already exist" << "\n";
+      std::cout << "the key is already exist\n";
       delete new_node;
       return;
     } else if (new_key < cur->key) {
