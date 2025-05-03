@@ -3,14 +3,14 @@
 #include <algorithm>
 #include <concepts>
 
-struct PopError {
-  const char* str;
+struct EmptyStackError : std::exception {
+  using std::exception::exception;
 };
 
 template <typename T>
 struct Node {
   T value;
-  Node* prev = nullptr;
+  Node<T>* prev = nullptr;
 };
 
 template <typename T>
@@ -54,10 +54,12 @@ void Stack<T>::Push(T value) {
 template <typename T>
 T Stack<T>::Pop() {
   if (head == nullptr) {
-    throw PopError("Empty stack");
+    throw EmptyStackError();
   }
+  Node<T>* del_node = head;
   T val = head->value;
   head = head->prev;
+  delete del_node;
   return val;
 }
 
@@ -85,16 +87,23 @@ template <typename T>
   requires(std::totally_ordered<T>)
 T MinStack<T>::Pop() {
   if (head == nullptr) {
-    throw PopError("Empty stack");
+    throw EmptyStackError();
   }
+  Node<T>* del_node = head;
+  Node<T>* del_node_min = head_min;
   T val = head->value;
   head = head->prev;
   head_min = head_min->prev;
+  delete del_node;
+  delete del_node_min;
   return val;
 }
 
 template <typename T>
   requires(std::totally_ordered<T>)
 T MinStack<T>::GetMin() {
+  if (head_min == nullptr) {
+    throw EmptyStackError();
+  }
   return head_min->value;
 }

@@ -41,13 +41,17 @@ TEST(MinStackTest, Simple) {
   ASSERT_EQ(stack.Pop(), 1);  // []
 }
 
-TEST(PopErrorTest, PopErrorTest) {
+TEST(PopErrorTest, EmptyStackErrorTest) {
   MinStack<int> minstack{};
-  ASSERT_THROW(minstack.Pop(), PopError);
+  ASSERT_THROW(minstack.Pop(), EmptyStackError);
+  MinStack<int> minstack2{};
+  minstack2.Push(6);
+  minstack2.Pop();
+  ASSERT_THROW(minstack2.GetMin(), EmptyStackError);
   Stack<int> stack{};
   stack.Push(2);
   stack.Pop();
-  ASSERT_THROW(stack.Pop(), PopError);
+  ASSERT_THROW(stack.Pop(), EmptyStackError);
 }
 
 TEST(MinStackTest, Double) {

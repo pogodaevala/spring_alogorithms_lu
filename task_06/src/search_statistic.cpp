@@ -2,8 +2,8 @@
 
 #include <stdexcept>
 
-double SearchNStatistics(std::vector<double> input, int order) {
-  if (input.empty() or order >= input.size() or order < 0) {
+double SearchNStatistics(const std::vector<double>& input, int order) {
+  if (input.empty() || order >= input.size() || order < 0) {
     throw std::invalid_argument("invalid data");
   }
   double elem = input[0];
