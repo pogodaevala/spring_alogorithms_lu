@@ -25,10 +25,7 @@ class AvlTree {
     Node* left_child = nullptr;
     Node* right_child = nullptr;
     int height = 1;
-    Node(int key, int data) {
-      this->key = key;
-      this->data = data;
-    }
+    Node(int key, int data) : key(key), data(data) {}
   };
   Node* head = nullptr;
   Node* Search(int key) const;
