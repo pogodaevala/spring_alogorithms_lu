@@ -1,3 +1,4 @@
+#include <stack>
 #include <vector>
 
 struct TemperatureWithDayIndex {
