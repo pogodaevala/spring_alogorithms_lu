@@ -13,9 +13,9 @@ struct HashTable {
   HashTable();
   HashTable(size_t size);
   HashTable(std::vector<std::pair<std::string, int>> input);
-  void Add(std::string new_key, int new_value);
-  void Del(std::string del_key);
-  int Get(std::string key);
+  void Add(const std::string& new_key, int new_value);
+  void Del(const std::string& del_key);
+  int Get(const std::string& key);
 
  private:
   struct Element {
@@ -28,8 +28,8 @@ struct HashTable {
   std::hash<std::string> base_hasher;
   int full_elements = 0;
   void UpdateArray();
-  int FindIndex(std::string key);  // находит, если существует
-                                   // если нет такого, возвращает -1
+  int FindIndex(const std::string& key);  // находит, если существует
+                                          // если нет такого, возвращает -1
   int FirstHashFunc(std::string num);
   int SecondHashFunc(std::string num);
   int HashFunc(std::string num, int iteration);

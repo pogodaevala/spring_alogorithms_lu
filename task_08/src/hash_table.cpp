@@ -26,7 +26,7 @@ HashTable::HashTable(std::vector<std::pair<std::string, int>> input) {
   }
 }
 
-int HashTable::FindIndex(std::string key) {
+int HashTable::FindIndex(const std::string& key) {
   for (int i{0}; i < array.size(); ++i) {
     int index{HashFunc(key, i)};
     if (array[index].condition == Condition::Empty) {
@@ -39,7 +39,7 @@ int HashTable::FindIndex(std::string key) {
   return -1;
 }
 
-void HashTable::Del(std::string del_key) {
+void HashTable::Del(const std::string& del_key) {
   int index = FindIndex(del_key);
   if (index == -1) {
     throw HashTableError("key do not exist");
@@ -49,7 +49,7 @@ void HashTable::Del(std::string del_key) {
   return;
 }
 
-int HashTable::Get(std::string key) {
+int HashTable::Get(const std::string& key) {
   int index = FindIndex(key);
   if (index == -1) {
     throw HashTableError("key do not exist");
@@ -57,7 +57,7 @@ int HashTable::Get(std::string key) {
   return array[index].value;
 }
 
-void HashTable::Add(std::string new_key, int new_value) {
+void HashTable::Add(const std::string& new_key, int new_value) {
   int index = FindIndex(new_key);
   if (index != -1) {
     array[index].value = new_value;
@@ -85,7 +85,7 @@ void HashTable::UpdateArray() {
   std::vector<Element> new_array(old_array.size() * 2);
   array = new_array;
   full_elements = 0;
-  for (auto elem : old_array) {
+  for (const auto& elem : old_array) {
     if (elem.condition == Condition::Full) {
       Add(elem.key, elem.value);
     }
