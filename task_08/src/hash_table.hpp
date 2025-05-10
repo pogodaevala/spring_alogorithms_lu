@@ -30,7 +30,7 @@ struct HashTable {
   void UpdateArray();
   int FindIndex(const std::string& key);  // находит, если существует
                                           // если нет такого, возвращает -1
-  int FirstHashFunc(std::string num);
-  int SecondHashFunc(std::string num);
-  int HashFunc(std::string num, int iteration);
+  int FirstHashFunc(const std::string& num);
+  int SecondHashFunc(const std::string& num);
+  int HashFunc(const std::string& num, int iteration);
 };

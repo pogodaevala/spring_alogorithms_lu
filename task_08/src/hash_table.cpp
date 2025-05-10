@@ -1,10 +1,12 @@
 #include "hash_table.hpp"
 
-int HashTable::SecondHashFunc(std::string key) { return 1; }
+int HashTable::SecondHashFunc(const std::string& key) { return 1; }
 
-int HashTable::FirstHashFunc(std::string key) { return base_hasher(key); }
+int HashTable::FirstHashFunc(const std::string& key) {
+  return base_hasher(key);
+}
 
-int HashTable::HashFunc(std::string key, int iteration) {
+int HashTable::HashFunc(const std::string& key, int iteration) {
   return (FirstHashFunc(key) + iteration * SecondHashFunc(key)) % array.size();
 }
 
