@@ -65,6 +65,9 @@ void HashTable::Add(const std::string& new_key, int new_value) {
     array[index].value = new_value;
     return;
   }
+  if (full_elements > array.size() / 2) {
+    UpdateArray();
+  }
   for (int i{0}; i < array.size(); ++i) {
     index = HashFunc(new_key, i);
     if (array[index].condition == Condition::Empty ||
@@ -73,9 +76,6 @@ void HashTable::Add(const std::string& new_key, int new_value) {
       array[index].value = new_value;
       array[index].condition = Condition::Full;
       full_elements += 1;
-      if (full_elements > array.size() / 2) {
-        UpdateArray();
-      }
       return;
     }
   }
