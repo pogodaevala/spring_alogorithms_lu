@@ -17,6 +17,13 @@ template <typename T>
 class Stack {
  public:
   Stack(){};
+  ~Stack() {
+    while (head != nullptr) {
+      Node<T>* old_head = head;
+      head = head->prev;
+      delete old_head;
+    }
+  }
   void Push(T value);
   T Pop();
 
@@ -29,6 +36,18 @@ template <typename T>
 class MinStack {
  public:
   MinStack(){};
+  ~MinStack() {
+    while (head != nullptr) {
+      Node<T>* old_head = head;
+      Node<T>* old_head_min = head_min;
+
+      head = head->prev;
+      head_min = head_min->prev;
+
+      delete old_head;
+      delete old_head_min;
+    }
+  }
   void Push(T value);
   T Pop();
   T GetMin();
@@ -86,7 +105,7 @@ void MinStack<T>::Push(T value) {
 template <typename T>
   requires(std::totally_ordered<T>)
 T MinStack<T>::Pop() {
-  if (head == nullptr) {
+  if (!head || !head_min) {
     throw EmptyStackError();
   }
   Node<T>* del_node = head;
@@ -102,7 +121,7 @@ T MinStack<T>::Pop() {
 template <typename T>
   requires(std::totally_ordered<T>)
 T MinStack<T>::GetMin() {
-  if (head_min == nullptr) {
+  if (!head_min) {
     throw EmptyStackError();
   }
   return head_min->value;

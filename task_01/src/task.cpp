@@ -2,7 +2,8 @@
 
 #include <stdexcept>
 
-std::pair<int, int> SearchNumbers(int search_num, std::vector<int> data) {
+std::pair<int, int> SearchNumbers(int search_num,
+                                  const std::vector<int>& data) {
   if (data.size() <= 1) {
     throw std::invalid_argument("vector is too small");
   }
