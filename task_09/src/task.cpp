@@ -5,7 +5,7 @@
 std::vector<bool> IsThereSortedColumns(
     const std::vector<std::vector<int>>& matrix,
     const std::vector<std::pair<size_t, size_t>>& l_and_r) {
-  std::vector<std::vector<int>> prefikses_from_bools{build_prefikses(matrix)};
+  std::vector<std::vector<int>> prefikses_from_bools{BuildPrefikses(matrix)};
   std::vector<bool> ans{};
   for (auto pair : l_and_r) {
     size_t l = pair.first;
@@ -30,7 +30,7 @@ std::vector<bool> IsThereSortedColumns(
   return ans;
 }
 
-std::vector<std::vector<int>> build_prefikses(
+std::vector<std::vector<int>> BuildPrefikses(
     const std::vector<std::vector<int>>& matrix) {
   if (matrix.size() == 0) {
     throw std::runtime_error("empty matrix");
