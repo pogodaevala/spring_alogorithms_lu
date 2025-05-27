@@ -50,7 +50,7 @@ class MinStack {
   }
   void Push(T value);
   T Pop();
-  T GetMin();
+  T const GetMin();
 
  private:
   Node<T>* head = nullptr;
@@ -120,7 +120,7 @@ T MinStack<T>::Pop() {
 
 template <typename T>
   requires(std::totally_ordered<T>)
-T MinStack<T>::GetMin() {
+T const MinStack<T>::GetMin() {
   if (!head_min) {
     throw EmptyStackError();
   }

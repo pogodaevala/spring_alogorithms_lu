@@ -1,5 +1,10 @@
 #include "days_before_hot.hpp"
 
+struct TemperatureWithDayIndex {
+  double temperature;
+  int day_index;
+};
+
 std::vector<int> DaysBeforeHot(std::vector<double> temperatures) {
   std::vector<int> days_before_hot(temperatures.size());
   std::stack<TemperatureWithDayIndex> hotter_temperatures{};

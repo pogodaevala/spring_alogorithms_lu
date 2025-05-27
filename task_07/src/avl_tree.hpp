@@ -14,6 +14,26 @@ class AvlTree {
     }
   }
 
+  bool operator==(const AvlTree& other) const {
+    if (this == &other) {
+      return true;
+    }
+    if (head == nullptr && other.head == nullptr) {
+      return true;
+    }
+    if (head == nullptr || other.head == nullptr) {
+      return false;
+    }
+    for (auto it = begin(), it_other = other.begin();
+         it != end() && it_other != other.end(); ++it, ++it_other) {
+      if (*it != *it_other) {
+        return false;
+      }
+    }
+    return true;
+  }
+  bool operator!=(const AvlTree& other) const { return !(*this == other); }
+
   void Del(int del_key);
   void Add(int new_key, int data);
 

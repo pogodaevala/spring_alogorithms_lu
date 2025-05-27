@@ -68,3 +68,67 @@ TEST(AvlCoutTest, SingleElement) {
   oss << tree;
   EXPECT_EQ(oss.str(), "{(5, 6)}");
 }
+
+TEST(AvlIteratorTest, IterationOrder) {
+  std::vector<std::pair<int, int>> pairs{{5, 5}, {3, 3}, {7, 7}, {2, 2},
+                                         {4, 4}, {6, 6}, {8, 8}};
+  AvlTree tree(pairs);
+
+  std::vector<std::pair<int, int>> result;
+  for (const auto& kv : tree) {
+    result.push_back(kv);
+  }
+
+  std::vector<std::pair<int, int>> expected{{2, 2}, {3, 3}, {4, 4}, {5, 5},
+                                            {6, 6}, {7, 7}, {8, 8}};
+
+  EXPECT_EQ(result, expected);
+}
+
+TEST(AvlIteratorTest, EmptyTree) {
+  AvlTree empty_tree;
+  std::vector<std::pair<int, int>> result;
+  for (const auto& kv : empty_tree) {
+    result.push_back(kv);
+  }
+  EXPECT_TRUE(result.empty());
+}
+
+TEST(AvlIteratorTest, SingleElement) {
+  AvlTree tree;
+  tree.Add(5, 6);
+  std::vector<std::pair<int, int>> result;
+  for (const auto& kv : tree) {
+    result.push_back(kv);
+  }
+  EXPECT_EQ(result.size(), 1);
+  EXPECT_EQ(result[0].first, 5);
+  EXPECT_EQ(result[0].second, 6);
+}
+
+TEST(AvlIteratorTest, MixedOperations) {
+  AvlTree tree;
+  tree.Add(5, 5);
+  tree.Add(3, 3);
+  tree.Add(7, 7);
+
+  std::vector<std::pair<int, int>> result;
+  for (const auto& kv : tree) {
+    result.push_back(kv);
+  }
+
+  std::vector<std::pair<int, int>> expected{{3, 3}, {5, 5}, {7, 7}};
+
+  EXPECT_EQ(result, expected);
+
+  tree.Del(3);
+
+  result.clear();
+  for (const auto& kv : tree) {
+    result.push_back(kv);
+  }
+
+  expected = {{5, 5}, {7, 7}};
+
+  EXPECT_EQ(result, expected);
+}
