@@ -1,14 +1,26 @@
 #include "quick_sort.hpp"
 
-std::vector<double> QuickSort(std::vector<double> input) {
-  if (input.size() <= 1) {
-    return input;
+#include <algorithm>
+#include <vector>
+
+void QuickSortInplace(std::vector<double>& arr, int left, int right) {
+  if (left >= right) return;
+  double pivot = arr[right];
+  int i = left;
+  for (int j = left; j < right; ++j) {
+    if (arr[j] < pivot) {
+      std::swap(arr[i], arr[j]);
+      ++i;
+    }
   }
-  double elem = input[0];
-  std::vector<double> eq{Eq(elem, input)};
-  std::vector<double> bigger{QuickSort(Bigger(elem, input))};
-  std::vector<double> ans{QuickSort(Smaller(elem, input))};
-  ans.insert(ans.end(), eq.begin(), eq.end());
-  ans.insert(ans.end(), bigger.begin(), bigger.end());
-  return ans;
+  std::swap(arr[i], arr[right]);
+  QuickSortInplace(arr, left, i - 1);
+  QuickSortInplace(arr, i + 1, right);
+}
+
+// обертка
+std::vector<double> QuickSort(const std::vector<double>& input) {
+  std::vector<double> arr = input;
+  if (!arr.empty()) QuickSortInplace(arr, 0, arr.size() - 1);
+  return arr;
 }
