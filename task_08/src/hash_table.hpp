@@ -12,7 +12,7 @@ struct HashTable {
  public:
   HashTable();
   HashTable(size_t size);
-  HashTable(const std::vector<std::pair<std::string, int>> input);
+  HashTable(const std::vector<std::pair<std::string, int>>& input);
   void Add(const std::string& new_key, int new_value);
   void Del(const std::string& del_key);
   int Get(const std::string& key);

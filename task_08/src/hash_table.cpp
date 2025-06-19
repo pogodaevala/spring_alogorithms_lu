@@ -20,10 +20,10 @@ HashTable::HashTable() {
   array = vec;
 }
 
-HashTable::HashTable(const std::vector<std::pair<std::string, int>> input) {
+HashTable::HashTable(const std::vector<std::pair<std::string, int>>& input) {
   std::vector<Element> vec(input.size() * 3);
   array = vec;
-  for (const auto elem : input) {
+  for (const auto& elem : input) {
     Add(elem.first, elem.second);
   }
 }

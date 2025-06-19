@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <vector>
 
-void QuickSortInplace(std::vector<double>& arr, int left, int right) {
+static void QuickSortInplace(std::vector<double>& arr, int left, int right) {
   if (left >= right) return;
   double pivot = arr[right];
   int i = left;
